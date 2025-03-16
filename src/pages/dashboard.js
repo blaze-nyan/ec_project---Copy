@@ -1,15 +1,16 @@
 "use client";
 
-import Image from "next/image";
-import logo from "../public/images/logo.jpg";
+// import Image from "next/image";
+// import logo from "../public/images/logo.jpg";
 import { useRouter } from "next/navigation";
+import AutoAIReportGenerator from "@/app/components/AutoAIReportGenerator";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   FaBan,
-  FaCalendarCheck,
-  FaCalendarDays,
+  // FaCalendarCheck,
+  // FaCalendarDays,
   FaPlaneArrival,
 } from "react-icons/fa6";
 import {
@@ -21,17 +22,17 @@ import {
   Legend,
   Line,
   LineChart,
-  Pie,
-  PieChart,
+  // Pie,
+  // PieChart,
   RadialBar,
   RadialBarChart,
   ResponsiveContainer,
-  Scatter,
-  ScatterChart,
+  // Scatter,
+  // ScatterChart,
   Tooltip,
   XAxis,
   YAxis,
-  ZAxis,
+  // ZAxis,
 } from "recharts";
 import "../app/globals.css";
 import moment from "moment";
@@ -82,8 +83,6 @@ export default function Dashboard() {
   const [dataADR, setDataADR] = useState([]);
 
   const [ageSegmentation, setAgeSegmentation] = useState([]);
-
- 
 
   const getBookingData = async () => {
     const response = await axios
@@ -374,6 +373,7 @@ export default function Dashboard() {
       .catch((err) => {
         console.log(err);
       });
+    console.log(response);
   };
 
   useEffect(() => {
@@ -718,10 +718,11 @@ export default function Dashboard() {
             </ResponsiveContainer>
           </div>
           <div className="mt-5 px-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt sed
-            ea earum dignissimos quis aliquid commodi quas, odit maxime?
-            Cupiditate ducimus quibusdam praesentium reiciendis ratione
-            inventore excepturi ipsam dolor reprehenderit.
+            <AutoAIReportGenerator
+              data={monthlyIncome}
+              title="Monthly Income"
+              type="monthly"
+            />
           </div>
         </div>
       </div>
@@ -762,10 +763,11 @@ export default function Dashboard() {
             </ResponsiveContainer>
           </div>
           <div className="mt-5 px-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt sed
-            ea earum dignissimos quis aliquid commodi quas, odit maxime?
-            Cupiditate ducimus quibusdam praesentium reiciendis ratione
-            inventore excepturi ipsam dolor reprehenderit.
+            <AutoAIReportGenerator
+              data={yearlyIncome}
+              title="Yearly Income"
+              type="yearly"
+            />
           </div>
         </div>
       </div>
